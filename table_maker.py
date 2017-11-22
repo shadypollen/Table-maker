@@ -29,10 +29,11 @@ def makeTable(inputList):
 			print((("+" + "-"*maxLength) * maxRow) + "+")
 		for word in row:
 			rowList.append("|" + word.center(maxLength, " "))
-		rowList.append("|")
-		rowIndex = int(inputList.index(row))
-		if rowIndex < maxRow - 1:
-			rowList.append(((" "*maxLength) + "|") * (rowIndex < maxRow - 1))
+		rowIndex = len(rowList)
+		if rowIndex < maxRow:
+			rowList.append("|" + ((" " * maxLength) + "|")*(maxRow - rowIndex))
+		else:
+			rowList.append("|")
 		print("".join(rowList))
 		print((("+" + "-"*maxLength) * maxRow) + "+")
 		rowList = []
