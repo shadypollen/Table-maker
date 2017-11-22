@@ -20,37 +20,23 @@ def findLongestRow(inputList):
 	return maxLength
 
 def makeTable(inputList):
-	wordList = []
+	rowList = []
 	maxLength = findLongestWord(inputList)	
 	maxRow = findLongestRow(inputList)
 	print("Max length:", maxLength, "max row:", maxRow)
-	for row in inputList:	
+	for row in inputList: 
+		if not inputList.index(row):
+			print((("+" + "-"*maxLength) * maxRow) + "+")
 		for word in row:
-			wordPadding = int((maxLength - len(word))/2)
-			startBorder = "+" + ("-"*maxLength) + "+"
-			endBorder = ("-"*(maxLength+2))
-			evenStartWord = ("|" + (" "*wordPadding) + word + (" "*wordPadding) + "|") 
-			oddStartWord = ("|" + (" "*wordPadding) + word + (" "*(wordPadding+1)) + "|")
-			evenEndWord = (" " + (" "*wordPadding) + word + (" "*wordPadding) + "|") 
-			oddEndWord = (" " + (" "*wordPadding) + word + (" "*(wordPadding+1)) + "|") 
-			borderString = (startBorder + (endBorder)*len(row))
-			if len(word) % 2 == 0 and row.index(word) == 0:
-				wordList.append(evenStartWord)
-			elif row.index(word) == 0:
-				wordList.append(oddStartWord)
-			elif len(word) % 2 == 0 and row.index(word) != 0:
-				wordList.append(oddEndWord)
-			else:
-				wordList.append(evenEndWord)
-		if inputList.index(row) == 0:
-			print("+" + (("-"*maxLength) + "+")*maxRow)
-		if len(row) < maxRow:
-			print("".join(wordList) + (" "*maxLength) + "|")	
-		else:
-			print("".join(wordList))
-		print("+" + (("-"*maxLength) + "+")*maxRow)
-		wordList = []
- 
+			rowList.append("|" + word.center(maxLength, " "))
+		rowList.append("|")
+		rowIndex = int(inputList.index(row))
+		if rowIndex < maxRow - 1:
+			rowList.append(((" "*maxLength) + "|") * (rowIndex < maxRow - 1))
+		print("".join(rowList))
+		print((("+" + "-"*maxLength) * maxRow) + "+")
+		rowList = []
+		
 		
 print("Input your word. Input !row for new row and !end to \
 stop data input \n")
