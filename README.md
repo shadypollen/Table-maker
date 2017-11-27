@@ -14,6 +14,6 @@ the script will generate an ASCII table accordingly.
 
 ## Future plans
 
-* Add a function to specify input type from terminal
-* Export lists in HTML format
-* Make a GUI version
+* Use getopt to allow for old-school option input 
+* Export lists in JSON and HTML format
+* Make a GUI version(?)
